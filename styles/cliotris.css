@@ -1,6 +1,4 @@
 body {
-    background: #111;
-    color: #ddd;
     font-family: "Truculenta", "Segoe UI", Roboto, Arial;
     display: flex;
     gap: 20px;
@@ -8,24 +6,19 @@ body {
     padding: 20px;
     flex-wrap: wrap;
     justify-content: center;
-}
-details {
-    margin: 1em 0;
+    background: #ffe4e1;
+    color: #800080;
 }
 canvas {
     background: #000;
     image-rendering: pixelated;
-    border: 4px solid #222;
     cursor: pointer;
+    background: #ffb6c1;
+    border: 4px solid #ff69b4;
 }
-
 a {color:#ff1493}
 .info {
     width: 400px;
-}
-#howtoBtn {
-    margin-top: 1em;
-    display: block;
 }
 .info button {
     width: 10em;
@@ -52,77 +45,9 @@ a {color:#ff1493}
 }
 button {
     font-family: inherit;
-    margin: 1em 0;
+    margin: 0 0 .5em 0;
     padding: 8px 10px;
-    background: #222;
-    color: #ddd;
-    border: 1px solid #444;
     cursor: pointer;
-}
-dialog::backdrop {
-  background-color: #01055694;
-}
-dialog {
-    background: #222;
-    max-width: 30em;
-    color: #ddd;
-    border: 2px solid #444;
-    padding: 1em;
-    border-radius: 8px;
-}
-dialog {
-  opacity: 0;
-  min-width: 300px;
-  translate: 0 -80vh;
-  transition-property: translate, opacity, display;
-  transition-duration: 1s;
-  transition-behavior: allow-discrete;
-}
-footer {
-    flex: 1 1 100%;
-    text-align: center;
-    margin-top: 20px;
-    font-size: .8em;
-    color: #666;
-}
-form {
-    text-align: right;
-}
-dialog[open] {
-  translate: 0 -35vh;
-  opacity: 1;
-  @starting-style {
-    opacity: 0;
-    translate: 0 -80vh;
-  }
-}
-.hint {
-    font-size:.8em;
-    color: #aaa;
-    margin-top: 10px;
-}
-body {
-    background: #ffe4e1;
-    color: #800080;
-}
-canvas {
-    background: #ffb6c1;
-    border: 4px solid #ff69b4;
-}
-button {
-    background: #ff69b4;
-    color: #fff;
-    border: 1px solid #ff1493;
-}
-dialog {
-    background: #ffe4e1;
-    color: #800080;
-    border: 2px solid #ff69b4;
-}
-dialog::backdrop {
-    background-color: #ffb6c1a1;
-}
-button {
     background: #ff69b4;
     color: #fff;
     border: 1px solid #ff1493;
@@ -142,8 +67,54 @@ button.secondary:hover,button.secondary:focus {
     background: #943965;
     border: 1px solid #95667f;
 }
-
+dialog::backdrop {
+    background-color: #395394c1;
+}
+dialog {
+    max-width: 30em;
+    padding: 1em;
+    border-radius: 8px;
+    opacity: 0;
+    min-width: 300px;
+    translate: 0 -80vh;
+    transition-property: translate, opacity, display;
+    transition-duration: 1s;
+    transition-behavior: allow-discrete;
+    background: #ffe4e1;
+    color: #800080;
+    border: 2px solid #ff69b4;
+}
+dialog[open] {
+  translate: 0 -35vh;
+  opacity: 1;
+  @starting-style {
+    opacity: 0;
+    translate: 0 -80vh;
+  }
+}
+footer {
+    flex: 1 1 100%;
+    text-align: center;
+    margin-top: 20px;
+    font-size: .8em;
+    color: #666;
+}
+summary {
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+form {
+    text-align: right;
+}
+h1,h2,h3 {
+    margin: 0 0 .2em 0;
+}
+p {
+    margin: 0 0 .5em 0;
+}
 .hint {
+    font-size:.8em;
+    margin-top: 10px;
     color: #ff1493;
 }
 #clio, #cliopink {

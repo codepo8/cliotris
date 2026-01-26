@@ -99,8 +99,11 @@
             setTimeout(()=> { end(score); }, 10);
         }
     }
-    
+    function togglebodyscroll(disable) {
+        document.body.style.overflow = disable ? 'hidden' : 'auto';
+    }
     function end(finalScore) {
+        togglebodyscroll(true);
         const dlg = document.getElementById('end');
         if (!dlg) return;
         const scoreSpan = dlg.querySelector('span') || null;
@@ -284,6 +287,7 @@
     }
 
     function restart() {
+        togglebodyscroll(true);
         restartBtn.textContent = 'Restart';
         clearInterval(gameInterval);
         initGrid();
@@ -303,7 +307,8 @@
         else if (e.key === 'ArrowDown') { drop(); draw(); }
         else if (e.key === ' ') { e.preventDefault(); hardDrop(); draw(); }
         else if (e.key.toLowerCase() === 'z' || e.key === 'ArrowUp') { rotate(); draw(); }
-        else if (e.key.toLowerCase() === 'g') { console.log('s');initGrid(); draw(); }
+        else if (e.key.toLowerCase() === 'g') { initGrid(); draw(); }
+        else if (e.key.toLowerCase() === 'e') { end(score); }
     });
 
     canvas.addEventListener('click', handleCanvasClick);
@@ -442,9 +447,4 @@
 
     document.body.appendChild(controls);
 
-    const dialog = document.querySelector("dialog");
-    const howtobtn = document.getElementById("howtoBtn");
-    howtobtn.addEventListener("click", () => {
-        dialog.showModal();
-    });
 })();

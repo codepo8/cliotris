@@ -16,21 +16,17 @@
             <h1>Cliotris</h1>
             <p>Score: <span id="score">0</span></p>
             <button id="restart">Start</button>
-            <button id="howtoBtn" class="secondary">How to Play</button>
         </div>
         <div class="quickintro">
             <p class="hint">Rub four pink Clios to clear the entire row or column.</p>
             <p>Controls: ← → ↓ space rotate</p>
         </div>
-        <dialog id="howto">
-            <h2>How to Play Cliotris</h2>   
+        <details id="howto">
+            <summary>How to Play Cliotris</summary>   
             <p>This is a Tetris variant where, in addition to the standard pieces, there is a small chance to spawn a special pink 1x4 piece (vertical or horizontal).</p>
             <p>To clear rows or columns, you can "rub" (rapid back-and-forth motion) over any pink 1x4 blocks on the grid or the active piece. Rubbing a pink row clears that entire row, and rubbing a pink column clears that entire column.</p>
             <p>Use the arrow keys to move and drop pieces, space to hard drop, and Z or Up Arrow to rotate.</p>
-            <form method="dialog">             
-                <button>Close</button>
-            </form>
-        </dialog>
+        </details>
         <dialog id="end">
             <h2>Game over</h2>
             Your score: <span id="score"></span>

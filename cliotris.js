@@ -1,11 +1,18 @@
 (() => {
     const canvas = document.getElementById('c');
     const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false; 
+    ctx.mozImageSmoothingEnabled = false; 
+    ctx.webkitImageSmoothingEnabled = false; 
+    ctx.msImageSmoothingEnabled = false; 
     const W = 10, H = 20, CELL = 24;
+    canvas.width = W * CELL;
+    canvas.height = H * CELL;
     const cols = W, rows = H;
     const scoreEl = document.getElementById('score');
     const restartBtn = document.getElementById('restart');
-
+    const clioimage = document.getElementById('clio');
+    const cliopinkimage = document.getElementById('cliopink');
     const COLORS = {
         I: '#00f0f0', J: '#0000f0', L:'#f0a000', O:'#f0f000', S:'#00f000', T:'#a000f0', Z:'#f00000',
         PINK: '#ff5fbf'
@@ -244,24 +251,15 @@
         // background grid
         for (let y=0;y<rows;y++) {
             for (let x=0;x<cols;x++) {
-                ctx.fillStyle = '#060606';
+                ctx.fillStyle = '#f8f8f8';
                 ctx.fillRect(x*CELL, y*CELL, CELL, CELL);
-                ctx.strokeStyle = '#111';
+                ctx.strokeStyle = '#ccc';
                 ctx.strokeRect(x*CELL, y*CELL, CELL, CELL);
                 const cell = grid[y][x];
                 if (cell) {
                     ctx.fillStyle = cell.color;
-                    ctx.fillRect(x*CELL+1, y*CELL+1, CELL-2, CELL-2);
-                    const img = window.clioPixelImg || (window.clioPixelImg = new Image());
-                    if (!img.src) {
-                        // relative path; change to the actual location of your clio-pixel image if needed
-                        img.src = 'clio-pixel.png';
-                        img.onload = () => requestAnimationFrame(draw);
-                        img.onerror = () => { /* ignore loading error, fall back to colored cell */ };
-                    }
-                    if (img.complete && img.naturalWidth > 0) {
-                        ctx.drawImage(img, x*CELL+1, y*CELL+1, CELL-2, CELL-2);
-                    }
+                    ctx.fillRect(x*CELL+1, y*CELL+1, CELL-2, CELL-2);    
+                    ctx.drawImage(cell.color === COLORS.PINK ? cliopinkimage : clioimage, x*CELL+1, y*CELL+1, CELL-2, CELL-2);
                 }
             }
         }
@@ -273,24 +271,19 @@
                 if (y >= 0) {
                     ctx.fillStyle = current.color;
                     ctx.fillRect(x*CELL+1, y*CELL+1, CELL-2, CELL-2);
-                    ctx.strokeStyle = '#0006';
+                    // ctx.strokeStyle = '#0006';
                     ctx.strokeRect(x*CELL+1, y*CELL+1, CELL-2, CELL-2);
-                    const img = window.clioPixelImg || (window.clioPixelImg = new Image());
-                    if (!img.src) {
-                        // relative path; change to the actual location of your clio-pixel image if needed
-                        img.src = 'clio-pixel.png';
-                        img.onload = () => requestAnimationFrame(draw);
-                        img.onerror = () => { /* ignore loading error, fall back to colored cell */ };
-                    }
-                    if (img.complete && img.naturalWidth > 0) {
-                        ctx.drawImage(img, x*CELL+1, y*CELL+1, CELL-2, CELL-2);
-                    }
+                    // keep resized images crisp
+                    ctx.imageSmoothingEnabled = false;
+                    // ctx.drawImage(current.type === 'PINK' ? cliopinkimage : clioimage, x*CELL+1, y*CELL+1, CELL-2, CELL-2);
+                    ctx.drawImage(current.type === 'PINK' ? cliopinkimage : clioimage, x*CELL+1, y*CELL+1,22,22);
                 }
             }
         }
     }
 
     function restart() {
+        restartBtn.textContent = 'Restart';
         clearInterval(gameInterval);
         initGrid();
         current = null;
@@ -316,12 +309,13 @@
     restartBtn.addEventListener('click', restart);
 
     // init
-    initGrid();
-    spawnPiece();
-    draw();
-    gameInterval = setInterval(step, dropTime);
-})();
-(function(){
+
+    window.onload = () => {
+        initGrid();
+        spawnPiece();
+        draw();
+        // gameInterval = setInterval(step, dropTime);
+    }
     const el = document.getElementById('c');
 
     // Rub detector settings
@@ -416,28 +410,41 @@
         }
     }, { passive: true });
 
-    // Example consumer: flash the canvas briefly when a rub is detected
-    el.addEventListener('onrub', (e) => {
-        try {
-            const ctx = el.getContext('2d');
-            // create a quick translucent overlay and restore after short timeout
-            ctx.save();
-            ctx.fillStyle = 'rgba(255,95,191,0.18)';
-            ctx.fillRect(0, 0, el.width, el.height);
-            setTimeout(() => {
-                // redraw by calling the existing draw function if available, otherwise clear
-                if (typeof window.requestAnimationFrame === 'function') {
-                    // attempt to call the game's draw function if it exists in global scope
-                    if (typeof window.draw === 'function') {
-                        window.draw();
-                    } else {
-                        ctx.clearRect(0, 0, el.width, el.height);
-                    }
-                }
-                ctx.restore && ctx.restore();
-            }, 110);
-        } catch (err) {
-            // ignore drawing errors
-        }
+    // Add arrow buttons for mobile play
+    const controls = document.createElement('div');
+    controls.id = 'mobilecontrols';
+
+    const leftButton = document.createElement('button');
+    leftButton.textContent = '←';
+    leftButton.onclick = () => { move(-1); draw(); };
+
+    const rotateButton = document.createElement('button');
+    rotateButton.textContent = '⟳';
+    rotateButton.onclick = () => { rotate(); draw(); };
+
+    const rightButton = document.createElement('button');
+    rightButton.textContent = '→';
+    rightButton.onclick = () => { move(1); draw(); };
+
+    const dropButton = document.createElement('button');
+    dropButton.textContent = '↓';
+    dropButton.onclick = () => { drop(); draw(); };
+
+    const hardDropButton = document.createElement('button');
+    hardDropButton.textContent = '⤓';
+    hardDropButton.onclick = () => { hardDrop(); draw(); };
+
+    controls.appendChild(leftButton);
+    controls.appendChild(rotateButton);
+    controls.appendChild(rightButton);
+    controls.appendChild(dropButton);
+    controls.appendChild(hardDropButton);
+
+    document.body.appendChild(controls);
+
+    const dialog = document.querySelector("dialog");
+    const howtobtn = document.getElementById("howtoBtn");
+    howtobtn.addEventListener("click", () => {
+        dialog.showModal();
     });
 })();

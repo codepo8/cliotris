@@ -2,32 +2,45 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Tetris with Pink 1x4 Special</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cliotris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Truculenta:opsz,wght@12..72,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="cliotris.css" />   
 </head>
 <body>
     <canvas id="c" width="240" height="480"></canvas>
     <div class="info">
-        <h3>Cliotris</h3>
+        <h1>Cliotris</h1>
         <div>Controls: ← → ↓ space rotate</div>
-        <div class="hint">Rub four 1x4 pink Clios to clear the entire row or column.</div>
+        <div class="hint">Rub four pink Clios to clear the entire row or column.</div>
         <div style="margin-top:12px">Score: <span id="score">0</span></div>
-        <button id="restart">Restart</button>
-       <details>
-        <summary>How to Play</summary>
+        <button id="restart">Start</button>
+        <button id="howtoBtn" class="secondary">How to Play</button>
+        <dialog id="howto">
+            <h2>How to Play Cliotris</h2>   
             <p>This is a Tetris variant where, in addition to the standard pieces, there is a small chance to spawn a special pink 1x4 piece (vertical or horizontal).</p>
             <p>To clear rows or columns, you can "rub" (rapid back-and-forth motion) over any pink 1x4 blocks on the grid or the active piece. Rubbing a pink row clears that entire row, and rubbing a pink column clears that entire column.</p>
-            </p>Use the arrow keys to move and drop pieces, space to hard drop, and Z or Up Arrow to rotate. Try to score as high as possible!</p>
-       </details>
+            <p>Use the arrow keys to move and drop pieces, space to hard drop, and Z or Up Arrow to rotate.</p>
+            <form method="dialog">             
+                <button>Close</button>
+            </form>
+        </dialog>
         <dialog id="end">
             <h2>Game over</h2>
-            Your score <span id="score"></span>
-            <button>Close</button>
+            Your score: <span id="score"></span>
+            <form method="dialog">
+                <button>Close</button>
+            </form>
         </dialog>
     </div>
-
-<script src="cliotris.js"></script>
-
+    <footer>
+        <p>Credits: Idea, "design": <a href="https://chrisheilmann.com">Chris Heilmann</a>, Code: Chris Heilmann and Arty Fishel, Music: Daniel Cranney</p>
+    </footer>
+    <img src="clio-pixel.png" height="24" width="24" id="clio" preload>
+    <img src="clio-pixel-pink.png" height="24" width="24" id="cliopink" preload>
+    <script src="cliotris.js"></script>
 
 </script>
 </body>

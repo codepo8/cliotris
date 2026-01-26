@@ -255,15 +255,15 @@
         // background grid
         for (let y=0;y<rows;y++) {
             for (let x=0;x<cols;x++) {
-                ctx.fillStyle = '#f8f8f8';
-                ctx.fillRect(x*CELL, y*CELL, CELL, CELL);
-                ctx.strokeStyle = '#ccc';
+                // ctx.fillStyle = '#f8f8f8';
+                // ctx.fillRect(x*CELL, y*CELL, CELL, CELL);
+                ctx.strokeStyle = '#e9e7e7';
                 ctx.strokeRect(x*CELL, y*CELL, CELL, CELL);
                 const cell = grid[y][x];
                 if (cell) {
                     ctx.fillStyle = cell.color;
                     ctx.fillRect(x*CELL+1, y*CELL+1, CELL-2, CELL-2);    
-                    ctx.drawImage(cell.color === COLORS.PINK ? cliopinkimage : clioimage, x*CELL+1, y*CELL+1, CELL-2, CELL-2);
+                    ctx.drawImage(cell.color === COLORS.PINK ? cliopinkimage : clioimage, x*CELL+1, y*CELL+1, 22,22);
                 }
             }
         }

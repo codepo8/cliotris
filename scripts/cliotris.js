@@ -99,6 +99,7 @@
             setTimeout(()=> { end(score); }, 10);
         }
     }
+    
     function end(finalScore) {
         const dlg = document.getElementById('end');
         if (!dlg) return;

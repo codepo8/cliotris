@@ -39,6 +39,16 @@ a {color:#ff1493}
     display: flex;
     justify-content: center;
     gap: 10px;
+    & > button {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.5em;
+        font-size: 2em;
+        height: 1.5em;
+        border-radius: 5px;
+    }
 }
 button {
     font-family: inherit;
@@ -138,4 +148,39 @@ button.secondary:hover,button.secondary:focus {
 }
 #clio, #cliopink {
     display: none;
+}
+/* mobile */
+@media (max-width: 600px) {
+    div.title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        position: fixed;
+        padding: 5px 10px;
+        top: 5px;
+        left: 0;
+        width: 100%;
+        & button {
+            margin:0;
+            width: auto;
+        }
+        & #howtoBtn {
+            margin-top: 0;
+        }
+    }
+    .quickintro {
+        text-align: center;
+        margin-top: 3em;      
+    }
+    canvas {
+        margin-top: 3em;
+    }
+        #mobilecontrols {
+        display: flex;
+    }
+    body {
+        padding-bottom: 80px;
+    }
 }

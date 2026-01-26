@@ -312,7 +312,6 @@
 
     window.onload = () => {
         initGrid();
-        spawnPiece();
         draw();
         // gameInterval = setInterval(step, dropTime);
     }

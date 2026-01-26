@@ -12,12 +12,16 @@
 <body>
     <canvas id="c" width="240" height="480"></canvas>
     <div class="info">
-        <h1>Cliotris</h1>
-        <div>Controls: ← → ↓ space rotate</div>
-        <div class="hint">Rub four pink Clios to clear the entire row or column.</div>
-        <div style="margin-top:12px">Score: <span id="score">0</span></div>
-        <button id="restart">Start</button>
-        <button id="howtoBtn" class="secondary">How to Play</button>
+        <div class="title">
+            <h1>Cliotris</h1>
+            <p>Score: <span id="score">0</span></p>
+            <button id="restart">Start</button>
+            <button id="howtoBtn" class="secondary">How to Play</button>
+        </div>
+        <div class="quickintro">
+            <p class="hint">Rub four pink Clios to clear the entire row or column.</p>
+            <p>Controls: ← → ↓ space rotate</p>
+        </div>
         <dialog id="howto">
             <h2>How to Play Cliotris</h2>   
             <p>This is a Tetris variant where, in addition to the standard pieces, there is a small chance to spawn a special pink 1x4 piece (vertical or horizontal).</p>

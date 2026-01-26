@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Tetris with Pink 1x4 Special</title>
+    <link rel="stylesheet" href="cliotris.css" />   
+</head>
+<body>
+    <canvas id="c" width="240" height="480"></canvas>
+    <div class="info">
+        <h3>Cliotris</h3>
+        <div>Controls: ← → ↓ space rotate</div>
+        <div class="hint">Rub four 1x4 pink Clios to clear the entire row or column.</div>
+        <div style="margin-top:12px">Score: <span id="score">0</span></div>
+        <button id="restart">Restart</button>
+       <details>
+        <summary>How to Play</summary>
+            <p>This is a Tetris variant where, in addition to the standard pieces, there is a small chance to spawn a special pink 1x4 piece (vertical or horizontal).</p>
+            <p>To clear rows or columns, you can "rub" (rapid back-and-forth motion) over any pink 1x4 blocks on the grid or the active piece. Rubbing a pink row clears that entire row, and rubbing a pink column clears that entire column.</p>
+            </p>Use the arrow keys to move and drop pieces, space to hard drop, and Z or Up Arrow to rotate. Try to score as high as possible!</p>
+       </details>
+        <dialog id="end">
+            <h2>Game over</h2>
+            Your score <span id="score"></span>
+            <button>Close</button>
+        </dialog>
+    </div>
+
+<script src="cliotris.js"></script>
+
+
+</script>
+</body>
+</html>

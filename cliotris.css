@@ -1,0 +1,39 @@
+body {
+    background: #111;
+    color: #ddd;
+    font-family: Segoe UI, Roboto, Arial;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px;
+    justify-content: center;
+}
+details {
+    margin: 1em 0;
+}
+canvas {
+    background: #000;
+    image-rendering: pixelated;
+    border: 4px solid #222;
+    cursor: pointer;
+
+}
+
+.info {
+    width: 400px;
+}
+
+button {
+    margin: 1em 0;
+    padding: 8px 10px;
+    background: #222;
+    color: #ddd;
+    border: 1px solid #444;
+    cursor: pointer;
+}
+
+.hint {
+    font-size:.8em;
+    color: #aaa;
+    margin-top: 10px;
+}

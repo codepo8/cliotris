@@ -184,6 +184,7 @@
             }
         }
         // check locked grid blocks (special type)
+        ..
         if (!hitSpecial && grid[gy] && grid[gy][gx] && grid[gy][gx].type === 'PINK') {
             hitSpecial = true;
             // detect orientation by scanning contiguous pinks in row/col

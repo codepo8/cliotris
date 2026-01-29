@@ -287,6 +287,7 @@
     }
 
     function restart() {
+        document.querySelector('#bgmusic')?.play();
         togglebodyscroll(true);
         restartBtn.textContent = 'Restart';
         clearInterval(gameInterval);
@@ -341,6 +342,18 @@
         lastSign = 0;
         signChanges = 0;
     }
+    function togglesound() {
+        const audio = document.getElementById('bgmusic');
+        const btn = document.getElementById('sound');
+        if (audio.paused) {
+            audio.play();
+            btn.textContent = 'Sound: on';
+        } else {
+            audio.pause();
+            btn.textContent = 'Sound: off';
+        }
+    }
+    document.getElementById('sound').addEventListener('click', togglesound);
 
     el.addEventListener('pointerdown', (ev) => {
         el.setPointerCapture && el.setPointerCapture(ev.pointerId);
